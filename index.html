@@ -81,6 +81,81 @@
 
     <hr class="section-divider" />
 
+    <section id="expenses" class="page-section">
+        <div class="section-head">
+        <h2>Expense Logger</h2>
+        <p>Track what you spend — fixed bills or variable day-to-day stuff</p>
+        </div>
+
+        <div class="two-col">
+        <div class="panel">
+
+        <h5>Add New Expense</h5>
+
+        <div class="field">
+        <label>Expense Name</label>
+        <input type="text" id="expName" placeholder="e.g. Coffee, Rent, Spotify" />
+        </div>
+
+        <div class="field">
+        <label>Category</label>
+        <select id="expCategory">
+          <option value="">Select a category</option>
+          <option>Food & Drink</option>
+          <option>Transportation</option>
+          <option>Entertainment</option>
+          <option>Shopping</option>
+          <option>Bills & Utilities</option>
+          <option>Health</option>
+          <option>Education</option>
+          <option>Other</option>
+        </select>
+        </div>
+
+        <div class="field">
+        <label>Amount ($)</label>
+        <input type="number" id="expAmount" placeholder="0.00" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+        <label>Type</label>
+
+        <div class="radio-row">
+          <label><input type="radio" name="expType" value="variable" checked /> Variable</label>
+          <label><input type="radio" name="expType" value="fixed" /> Fixed</label>
+        </div>
+
+        </div>
+
+        <button class="btn-primary" id="addExpBtn" style="width:100%; margin-top:0.5rem;">Add Expense</button>
+        </div>
+
+        <div class="panel">
+        <h5>Recent Expenses</h5>
+        <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Worth it?</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="expBody">
+            <tr id="emptyRow">
+              <td colspan="6" class="empty-msg">No expenses yet — add one to get started.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        
+    </section>
+
 
 
 
