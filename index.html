@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Monetraq</title>
+
+        <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    </head>
+
+    <body>
+    <nav>
+    <div class="nav-logo">Monet<span>raq</span></div>
+        <ul class="nav-links">
+         <li><a href="#dashboard">Dashboard</a></li>
+         <li><a href="#expenses">Expenses</a></li>
+         <li><a href="#goals">Goals</a></li>
+         <li><a href="#charts">Charts</a></li>
+         <li><a class="btn-nav" href="#expenses">+ Add Expense</a></li>
+        </ul>
+    </nav>            
+    <section id="dashboard" class="hero">
+        <h1>Take control of<br><span>your money.</span></h1>
+         <p>Log your expenses, see where your money actually goes, and find out what it could have grown into.</p>
+         <div class="hero-btns">
+         <a href="#expenses" class="btn-primary">Log an expense</a>
+         <a href="#charts" class="btn-secondary">View charts</a>
+         </div>
+    </section>
+        <div class="stats-row">
+        <div class="stat-card">
+        <span class="icon">💸</span>
+        <div class="lbl">Spent Today</div>
+        <div class="val" id="statToday">$0.00</div>
+        </div>
+
+        <div class="stat-card">
+        <span class="icon">🛡️</span>
+        <div class="lbl">Budget Left</div>
+        <div class="val" id="statLeft">—</div>
+        </div>
+
+        <div class="stat-card">
+        <span class="icon">😬</span>
+        <div class="lbl">Regret Score</div>
+        <div class="val" id="statRegret">0%</div>
+        </div>
+
+        <div class="stat-card">
+        <span class="icon">📋</span>
+        <div class="lbl">Total Logged</div>
+        <div class="val" id="statCount">0</div>
+        </div>
+    </div>
+
+    <div class="limit-section">
+    <div class="limit-box">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+            <h6>⚡ Daily Spending Limit</h6>
+            <small>Set your limit and watch it update live</small>
+        </div>
+        <div class="limit-input-row">
+            <input type="number" id="dailyLimitInput" placeholder="e.g. 50" min="0" style="width:130px;" />
+            <button class="btn-primary" id="setLimitBtn" style="padding:0.5rem 1rem; font-size:0.82rem;">Set</button>
+        </div>
+        </div>
+        <div class="progress-wrap">
+            <div class="prog-labels">
+            <span id="limitLabel">$0 of $—</span>
+            <span id="limitPct">—</span>
+        </div>
+        <progress id="limitBar" value="0" max="100"></progress>
+        </div>
+    </div>
+    </div>
+
+    <hr class="section-divider" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
