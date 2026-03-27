@@ -18,3 +18,62 @@ a {
   color: #4a90e2;
   text-decoration: none;
 }
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.nav-links a {
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: #555;
+}
+
+.nav-links a:hover {
+  background: #e4f0ff;
+  color: #4a90e2;
+}
+
+.nav-links .btn-nav {
+  background: #4a90e2;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+}
+
+.nav-links .btn-nav:hover {
+  background: #3578c6;
+}
+
+.hero {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 span {
+  color: #4a90e2;
+}
+
+.hero p {
+  color: #555;
+  max-width: 450px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 0.7rem;
+}
+
