@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Monetraq</title>
+
+        <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    </head>
+
+    <body>
+    <nav>
+    <div class="nav-logo">Monet<span>raq</span></div>
+        <ul class="nav-links">
+         <li><a href="#dashboard">Dashboard</a></li>
+         <li><a href="#expenses">Expenses</a></li>
+         <li><a href="#goals">Goals</a></li>
+         <li><a href="#charts">Charts</a></li>
+         <li><a class="btn-nav" href="#expenses">+ Add Expense</a></li>
+        </ul>
+    </nav>            
+    <section id="dashboard" class="hero">
+        <h1>Take control of<br><span>your money.</span></h1>
+         <p>Log your expenses, see where your money actually goes, and find out what it could have grown into.</p>
+         <div class="hero-btns">
+         <a href="#expenses" class="btn-primary">Log an expense</a>
+         <a href="#charts" class="btn-secondary">View charts</a>
+         </div>
+    </section>
+        <div class="stats-row">
+        <div class="stat-card">
+        <span class="icon">💸</span>
+        <div class="lbl">Spent Today</div>
+        <div class="val" id="statToday">$0.00</div>
+        </div>
+
+        <div class="stat-card">
+        <span class="icon">🛡️</span>
+        <div class="lbl">Budget Left</div>
+        <div class="val" id="statLeft">—</div>
+        </div>
+
+        <div class="stat-card">
+        <span class="icon">😬</span>
+        <div class="lbl">Regret Score</div>
+        <div class="val" id="statRegret">0%</div>
+        </div>
+
+        <div class="stat-card">
+        <span class="icon">📋</span>
+        <div class="lbl">Total Logged</div>
+        <div class="val" id="statCount">0</div>
+        </div>
+    </div>
+
+    <div class="limit-section">
+    <div class="limit-box">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+            <h6>⚡ Daily Spending Limit</h6>
+            <small>Set your limit and watch it update live</small>
+        </div>
+        <div class="limit-input-row">
+            <input type="number" id="dailyLimitInput" placeholder="e.g. 50" min="0" style="width:130px;" />
+            <button class="btn-primary" id="setLimitBtn" style="padding:0.5rem 1rem; font-size:0.82rem;">Set</button>
+        </div>
+        </div>
+        <div class="progress-wrap">
+            <div class="prog-labels">
+            <span id="limitLabel">$0 of $—</span>
+            <span id="limitPct">—</span>
+        </div>
+        <progress id="limitBar" value="0" max="100"></progress>
+        </div>
+    </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <section id="expenses" class="page-section">
+        <div class="section-head">
+        <h2>Expense Logger</h2>
+        <p>Track what you spend — fixed bills or variable day-to-day stuff</p>
+        </div>
+
+        <div class="two-col">
+        <div class="panel">
+
+        <h5>Add New Expense</h5>
+
+        <div class="field">
+        <label>Expense Name</label>
+        <input type="text" id="expName" placeholder="e.g. Coffee, Rent, Spotify" />
+        </div>
+
+        <div class="field">
+        <label>Category</label>
+        <select id="expCategory">
+          <option value="">Select a category</option>
+          <option>Food & Drink</option>
+          <option>Transportation</option>
+          <option>Entertainment</option>
+          <option>Shopping</option>
+          <option>Bills & Utilities</option>
+          <option>Health</option>
+          <option>Education</option>
+          <option>Other</option>
+        </select>
+        </div>
+
+        <div class="field">
+        <label>Amount ($)</label>
+        <input type="number" id="expAmount" placeholder="0.00" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+        <label>Type</label>
+
+        <div class="radio-row">
+          <label><input type="radio" name="expType" value="variable" checked /> Variable</label>
+          <label><input type="radio" name="expType" value="fixed" /> Fixed</label>
+        </div>
+
+        </div>
+
+        <button class="btn-primary" id="addExpBtn" style="width:100%; margin-top:0.5rem;">Add Expense</button>
+        </div>
+
+        <div class="panel">
+        <h5>Recent Expenses</h5>
+        <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Worth it?</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="expBody">
+            <tr id="emptyRow">
+              <td colspan="6" class="empty-msg">No expenses yet — add one to get started.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+
+    </section>
+
+<hr class="section-divider"/>
+
+    <section class="page-section">
+        <div class="section-head">
+        <h2>Future Value Display</h2>
+        <p>What could that money have become if you'd invested it instead?</p>
+        </div>
+
+        <div class="two-col">
+        <div class="panel">
+        <h5>Calculate</h5>
+
+        <div class="field">
+        <label>Amount ($)</label>
+        <input type="number" id="fvAmount" placeholder="0.00" min="0" step="0.01">
+        </div>
+
+        <div class="field">
+        <label>Annual Return (%)</label>
+        <input type="number" id="fvRate" value="7" min="0" step="0.1">
+        <div class="hint">Using ~7% based on average market return (just an estimate).</div>
+         </div>
+
+        <div class="field">
+        <label>Years: <strong id="fvYearsLbl">10</strong></label>
+        <input type="range" id="fvYears" min="1" max="40" value="10">
+        </div>
+
+        <button class="btn-primary" id="calcFvBtn" style="width:100%; margin-top:0.5rem;">
+        Calculate
+        </button>
+        </div>
+
+        <div class="panel fv-result">
+        <div class="fv-lbl">In <span id="fvResYears">—</span> years, it becomes</div>
+        <div class="fv-num" id="fvResNum">$—</div>
+        <div class="fv-sub" id="fvResSub">
+        Enter an amount above and hit Calculate to see compound interest in action.
+        </div>
+        </div>
+        </div>
+    </section>
+<hr class="section-divider" />
+    <section id="charts" class="page-section">
+        <div class="section-head">
+        <h2>Spending Charts</h2>
+        <p>Visualize where your money is actually going</p>
+        </div>
+
+        <div class="two-col">
+        <div class="panel" style="text-align:center;">
+        <h5>By Category</h5>
+
+        <div class="chart-wrap">
+        <canvas id="catChart"></canvas>
+        </div>
+        <p class="empty-msg" id="catEmpty" style="padding:1rem 0;">Add expenses to see the breakdown.</p>
+        </div>
+
+        <div class="panel">
+        <h5>Fixed vs Variable</h5>
+        <canvas id="typeChart" height="220"></canvas>
+        <p class="empty-msg" id="typeEmpty" style="padding:1rem 0;">Add expenses to compare types.</p>
+        </div>
+    </div>
+    </section>
+
+<hr class="section-divider" />
+    <section id="goals" class="page-section">
+        <div class="section-head">
+        <h2>Goal Tracker</h2>
+        <p>Set savings goals and track your progress</p>
+        </div>
+
+        <div class="two-col">
+        <div class="panel">
+        <h5>New Goal</h5>
+
+        <div class="field">
+        <label>Goal Name</label>
+        <input type="text" id="goalName" placeholder="e.g. Emergency Fund" />
+        </div>
+
+        <div class="field">
+        <label>Target Amount ($)</label>
+        <input type="number" id="goalTarget" placeholder="0.00" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+        <label>Deadline</label>
+        <input type="date" id="goalDeadline" />
+        </div>
+        <button class="btn-primary" id="addGoalBtn" style="width:100%; margin-top:0.5rem;">Add Goal</button>
+        </div>
+
+        <div id="goalsContainer">
+        <p class="empty-msg" id="goalsEmpty">No goals yet. Set your first one!</p>
+        </div>
+        </div>
+
+    </section>
+
+<hr class="section-divider" />
+    <section class="page-section">
+        <div class="section-head">
+        <h2>Regret Score</h2>
+        <p>How often do you regret your variable spending?</p>
+        </div>
+
+        <div class="two-col">
+        <div style="text-align:center; padding:1rem 0;">
+            
+        <div class="regret-ring">
+        <span id="regretDisplay">0%</span>
+        </div>
+
+        <p style="margin-top:0.85rem; font-size:0.82rem; color:var(--muted);">of variable expenses marked not worth it</p>
+        </div>
+        
+        <div class="panel">
+        <h5>Breakdown</h5>
+        <p style="font-size:0.83rem; color:var(--muted); margin-bottom:1.25rem;">
+        Use the <strong>Worth it?</strong> buttons in the expenses table to rate your variable spending.
+        </p>
+
+        <div class="regret-stats">
+        <div class="rs">
+          <span class="n" id="worthCount" style="color:var(--green);">0</span>
+          <span class="l">👍 Worth it</span>
+        </div>
+
+        <div class="rs">
+          <span class="n" id="notWorthCount" style="color:var(--red);">0</span>
+          <span class="l">👎 Not worth it</span>
+        </div>
+
+        <div class="rs">
+          <span class="n" id="unratedCount" style="color:var(--muted);">0</span>
+          <span class="l">❓ Unrated</span>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+<footer>
+    <strong>Monetraq</strong> &nbsp;·&nbsp; CPAN-113 Group Project &nbsp;·&nbsp; 2025
+</footer>
+</body>
+</html>
