@@ -65,8 +65,19 @@ function displayExpenses() {
 
 function rateExpense(index, rating) {
     expenses[index].rating = rating;
+<<<<<<< HEAD
     localStorage.setItem('expenses', JSON.stringify(expenses));
     displayExpenses();
+=======
+    if(rating == 'worth') {
+        expenses[index].worthIt = true;
+    } else {
+        expenses[index].worthIt = false;
+    }
+    localStorage.setItem('expenses', JSON.stringify(expenses));
+    displayExpenses();
+    updateRegretScore();
+>>>>>>> feature/regret-score
 }
 
 function deleteExpense(index) {
@@ -169,4 +180,41 @@ valueYears.addEventListener('input', function() {
     valueYearsLabel.textContent = this.value;
 });
 
+<<<<<<< HEAD
 displayExpenses();
+=======
+displayExpenses();
+
+
+function updateRegretScore() {
+    let variableExpenses = expenses.filter(function(exp) {
+        return exp.type === 'variable';
+    });
+
+    let notWorthIt = variableExpenses.filter(function(exp) {
+        return exp.worthIt === false;
+    });
+
+    let percent = variableExpenses.length === 0 ? 0 : Math.round((notWorthIt.length / variableExpenses.length) * 100);
+
+    let regretDisplay = document.getElementById('regretDisplay');
+    let statRegret = document.getElementById('statRegret');
+    let worthCount = document.getElementById('worthCount');
+    let notWorthCount = document.getElementById('notWorthCount');
+    let unratedCount = document.getElementById('unratedCount');
+
+    if(regretDisplay) regretDisplay.textContent = percent + '%';
+    if(statRegret) statRegret.textContent = percent + '%';
+
+    let worth = variableExpenses.filter(function(exp) { return exp.worthIt === true; });
+    let notWorth = variableExpenses.filter(function(exp) { return exp.worthIt === false; });
+    let unrated = variableExpenses.filter(function(exp) { return exp.worthIt === undefined; });
+
+    if(worthCount) worthCount.textContent = worth.length;
+    if(notWorthCount) notWorthCount.textContent = notWorth.length;
+    if(unratedCount) unratedCount.textContent = unrated.length;
+}
+
+updateStats();
+updateRegretScore();
+>>>>>>> feature/regret-score
