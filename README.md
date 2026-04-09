@@ -2,4 +2,4 @@
 Group project on Budget Tracker 
 
 ##DEMO
-![Monetraq Demo](assets/demo.gif)
+![Monetraq Demo](assets/animation.gif)
