@@ -1,35 +1,60 @@
-//  Expense Logger progress bar
+
 let expensesButton = document.getElementById('addExpBtn');
 let progressBar = document.getElementById('limitBar');
-let dailyLimit = document.getElementById('dailyLimitInput');
-let limitValue = dailyLimit.value;
-let label = document.getElementById('limitPct');
-let expenses = getExpenses();
-function getExpenses() {
-  return JSON.parse(localStorage.getItem(expenses));
-}
-function updateProgress(){
-    limitValue = label.textContent;  // sets what you inputted as the label
-    let sum  = 0.0;
-    for (let i = 0; i < expenses.length; i++) { // calculates the sum of expenses
+let dailyLimitInput = document.getElementById('dailyLimitInput');
+let limitLabel = document.getElementById('limitLabel');
+let limitPct = document.getElementById('limitPct');
+let setLimitBtn = document.getElementById('setLimitBtn');
+
+let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+let dailyLimit = parseFloat(localStorage.getItem('dailyLimit')) || 0;
+
+function updateProgress() {
+    let sum = 0.0;
+    for (let i = 0; i < expenses.length; i++) { 
         sum = sum + expenses[i].amount;
     }
-    let percent = Math.round(sum/limitValue); // gets the percentage from sum and inputted value
-    if (percent > 100){ // returns 100 if above 100
+
+    if (dailyLimit <= 0) return; 
+
+    let percent = Math.round((sum / dailyLimit) * 100); 
+    if (percent > 100) { 
         percent = 100;
     }
-    progressBar.value = percent; // percent is now linked to the progress bar
-    if (percent >= 75){ // changes color if at 75
-        progressBar.style.backgroundColor  = 'orange';
-    }
-    if (percent = 100){// changes color if at 100
-        progressBar.style.backgroundColor  = 'red'; // for some reason while debugging i couldn't change the bar color
+
+    progressBar.value = percent; 
+    limitLabel.textContent = '$' + sum.toFixed(2) + ' of $' + dailyLimit.toFixed(2);
+    limitPct.textContent = percent + '%';
+
+    if (percent >= 100) { 
+        progressBar.style.accentColor = 'red';
+    } else if (percent >= 75) { 
+        progressBar.style.accentColor = 'orange';
+    } else {
+        progressBar.style.accentColor = 'green';
     }
 }
-expensesButton.addEventListener('click', function() { // updates progress every time "Add Expenses" button is pressed
+
+setLimitBtn.addEventListener('click', function() { 
+    dailyLimit = parseFloat(dailyLimitInput.value);
+    if (!dailyLimit || dailyLimit <= 0) {
+        alert('Please enter a valid limit');
+        return;
+    }
+    localStorage.setItem('dailyLimit', dailyLimit);
     updateProgress();
 });
-// Future Value Display
+
+expensesButton.addEventListener('click', function() { 
+    updateProgress();
+});
+
+
+if (dailyLimit > 0) {
+    dailyLimitInput.value = dailyLimit;
+    updateProgress();
+}
+
 
 let valueAmount = document.getElementById('fvAmount');
 let valueRate = document.getElementById('fvRate');
@@ -38,18 +63,30 @@ let valueYearsLabel = document.getElementById('fvYearsLbl');
 let valueYearsLabel2 = document.getElementById('fvResYears');
 let calculateButton = document.getElementById('calcFvBtn');
 let answer = document.getElementById('fvResNum');
-let amount = valueAmount.value;
-let rate = valueRate.value;
-let years = valueYears.value;
-function calculate() { // calculates the future value
-valueYearsLabel2 = years; // sets the year to "in X years..."
-answer.textContent = "$" + ((amount*Math.pow(1+(rate/100))), years); // calculates using FV = P * (1 + r/100) ^ t and overwrites "$--"
+let answerSub = document.getElementById('fvResSub');
+
+function calculate() { 
+    let amount = parseFloat(valueAmount.value);
+    let rate = parseFloat(valueRate.value);
+    let years = parseInt(valueYears.value);
+
+    if (!amount || !rate || !years) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    // FV = P * (1 + r/100) ^ t
+    let fv = amount * Math.pow((1 + rate / 100), years);
+
+    valueYearsLabel2.textContent = years; // sets the year to "in X years..."
+    answer.textContent = '$' + fv.toFixed(2); // overwrites "$--"
+    answerSub.textContent = '$' + amount.toFixed(2) + ' at ' + rate + '% for ' + years + ' years';
 }
 
-calculateButton.addEventListener('click', function() { // calculate when calculate button is pressed
+calculateButton.addEventListener('click', function() { 
     calculate();
-})
+});
 
-valueYears.addEventListener('input', function() { // updates the label when changing slider
+valueYears.addEventListener('input', function() { 
     valueYearsLabel.textContent = this.value;
-})
+});
