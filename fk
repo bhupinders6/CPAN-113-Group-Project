@@ -1,0 +1,22 @@
+[33m9584f57[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Added goal tracker
+[33me3aa7af[m updated script.js and chart styling
+[33m223c32a[m added chart features from Amrit
+[33m76ef022[m updated script.js
+[33mefe9163[m resolved merge conflicts
+[33md8abad9[m[33m ([m[1;31morigin/feature/regret-score[m[33m, [m[1;32mfeature/regret-score[m[33m)[m script.js updated
+[33mbe213ea[m fixed script.js
+[33mdd49971[m Merge pull request #16 from bhupinders6/feature/daily-limit
+[33mcee2885[m added daily spending progress bar functionality and future value functionality
+[33m79b3e95[m Merge pull request #15 from bhupinders6/feature/goal-tracker
+[33m11c0e78[m[33m ([m[1;31morigin/feature/goal-tracker[m[33m, [m[1;32mfeature/goal-tracker[m[33m)[m Added goal tracker feature, allowing the user to organize their goals
+[33m7aa69b6[m Added regret score feature in script.js
+[33m5232296[m Merge pull request #14 from bhupinders6/feature/index-style
+[33md0c20cc[m[33m ([m[1;31morigin/feature/index-style[m[33m)[m updated style.css
+[33mdb5db8a[m Styled navbar and hero section styling
+[33mc3f7602[m added basic styles and fonts
+[33m26949ae[m index file updated
+[33medcb6b4[m index file updated
+[33m8d0f517[m Index.html updated
+[33mc872ef0[m Index.html updated
+[33m150ee2a[m created and updated index file
+[33md094127[m Initial commit
