@@ -273,3 +273,12 @@ footer strong {
   .hero h1 { font-size: 1.6rem; } 
   nav { padding: 0 10px; } 
 }
+
+.chart-wrap {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#typeChart {
+    max-height: 280px;
+}
