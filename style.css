@@ -282,9 +282,6 @@ footer strong {
 #typeChart {
     max-height: 280px;
 }
-<<<<<<< HEAD
-=======
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -328,4 +325,3 @@ nav {
 .nav-links a:hover {
   color: #3b82f6;
 }
->>>>>>> fe49a27 (updated style.css)
