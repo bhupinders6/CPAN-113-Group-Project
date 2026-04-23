@@ -25,7 +25,7 @@ Students and young adults who want to build better financial habits and understa
 - Live Site: https://bhupinders6.github.io/CPAN-113-Group-Project/
 - Video
 [![Watch the video](https://img.youtube.com/vi/ABC123xyz/0.jpg)](https://youtu.be/OZteyqatkw0)
-- 
+
 # Tasks List in detail and each member responsibility explained
 ![Screenshot1](assets/L1.png)
 ![Screenshot2](assets/L2.png)
