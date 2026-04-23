@@ -29,3 +29,4 @@ Students and young adults who want to build better financial habits and understa
 # Tasks List in detail and each member responsibility explained
 ![Screenshot1](assets/L1.png)
 ![Screenshot2](assets/L2.png)
+Bhupinder Singh- index.html & style.css file development and managing the project as team lead. 
